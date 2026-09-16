@@ -1,0 +1,10 @@
+# Playwright CLI output (may contain credentials)
+.playwright-cli/
+
+node_modules/
+.env
+.env.*
+!.env.example
+.agents/skills/task-observer/*.png
+.agents/skills/task-observer/.github/
+.agents/skills/task-observer/.tessl-plugin/
