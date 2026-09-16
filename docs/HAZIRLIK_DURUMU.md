@@ -1,68 +1,58 @@
-# GitHub Pages hazırlık durumu
+# Kurulum ve doğrulama durumu
 
-Kontrol tarihi: 16 Eylül 2026.
+16 Eylül 2026. Kullanıcı GitHub Pages hazırlığını, Vercel skills kurulumunu ve ücretli AI görsellerin yerine yüklenen görsellerin kullanılmasını açıkça onayladı.
 
-## Kaynak ve kapsam
+## Araçlar
 
-- Hedef depo: `serefkeser/chatgpt`; depo herkese açık.
-- İnceleme başlangıcında `main` yalnızca `README.md` içeriyordu.
-- Uygulama kaynağı kullanıcının yüklediği `Chatgpt_1.44.tsx`: 9.002 satır, 3.400.186 bayt.
-- Kaynağın SHA-256 değeri: `038be5948280ed1ccc95e5d9e0be16631a1228cea0b67d0809b332c0aa827960`.
-- Kaynak uygulama değiştirilmedi. Bu dal yalnızca araç kurulumlarını ve bulguları içerir.
-- Kullanıcı genel hazırlık, test ve yayın kapsamını onayladı. Mevcut bir özelliğin ücret nedeniyle farklı çalışmasına ilişkin karar aşağıda ayrıca bekliyor.
+Kurulumlar bu çalışmanın geliştirme ortamında yapıldı; kullanıcının Windows bilgisayarına uzaktan kurulmadı. Bunlar GitHub Pages üzerinde çalışan sunucu hizmetleri değildir.
 
-## PDF'deki araçların gerçek durumu
-
-Kurulumlar bu çalışmanın geliştirme ortamındadır; kullanıcının Windows bilgisayarında kurulum yapılmadı. Bunlar GitHub Pages üzerinde çalışan sunucu hizmetleri değildir.
-
-| Araç | Kurulum / doğrulama | Sınır |
+| Araç | Doğrulanan durum | Kullanım / sınır |
 | --- | --- | --- |
-| Playwright CLI 0.1.20 | CLI sürümü doğrulandı; resmi beceri `.claude/skills/playwright-cli` altında kuruldu. | Tarayıcı indirmesi zaman aşımı ve HTTP 502 verdi. Uygulama tarayıcı testi henüz yapılmadı. |
-| OmniRoute 3.8.50 | npm paketi kuruldu; sürüm ve yardım komutları çalıştı. | Sağlayıcı hesabı bağlanmadı; bu ChatGPT Work oturumunun model bağlantısı yönlendirilmedi. |
-| Headroom 0.37.0 | Ayrı Python ortamına `headroom-ai[proxy]` kuruldu. `headroom sg` ile kaynak dosyada 24 doğrudan `fetch` çağrısı bulundu. | `doctor`: proxy çalışmıyor, istemci yönlendirilmemiş; token tasarrufu ölçülmedi. |
-| claude-mem 13.25.1 | Paket, Bun 1.4.2 ve eklenti bağımlılıkları kuruldu. Telemetri kapatıldı. | Codex CLI bu ortamda bulunamadığı için IDE bağlantısı başarısız. Hafıza servisi ve oturum kaydı etkin değil. |
-| Frontend Design | Anthropic'in resmi becerisi `.agents/skills/frontend-design` altına kuruldu. | Arayüz henüz değiştirilmedi. |
-| Claude Code Setup | Resmi `claude-automation-recommender` becerisi `.agents/skills` altına kuruldu. | Salt okunur öneri becerisidir; kendi başına otomasyon kurmaz. |
-| Task Observer | Resmi beceri, referanslar ve betikler `.agents/skills/task-observer` altına kuruldu. | Yeni oturumda otomatik tetikleme doğrulanmadı; sürekli gözlem etkinmiş gibi raporlanmıyor. |
+| Playwright CLI 0.1.20 / Playwright 1.62.1 | CLI kurulu, Firefox 153 indirildi. | Mobil, anahtar, 429 ve gerçek MP4 testleri. |
+| Vercel skills 1.5.26 | CLI ve resmi find-skills becerisi kuruldu; skills list doğrulandı. | Proje becerilerinin envanteri alındı. |
+| claude-mem 13.25.1 | Bun 1.4.2 ve Codex CLI 0.154.0 ile yerel Codex eklentisi kaydedildi. | Worker health: ok. Kapsam kararı kaydedilip geri okundu. Otomatik Work sohbet kaydı bağlı değil. |
+| OmniRoute 3.8.50 | Paket, sürüm ve yardım komutları çalışıyor. | Sağlayıcı hesabı bağlanmadı; bu sohbetin trafiği yönlendirilmedi. |
+| Headroom 0.37.0 | Ayrı Python ortamında headroom-ai[proxy] kurulu. | headroom sg: orijinalde 24, Pages uygulamasında 23 doğrudan fetch. Proxy/tasarruf ölçümü etkin değil. |
+| Frontend Design | Resmi Anthropic becerisi projede. | Mevcut stüdyo görünümü korundu; açıklamalar, mobil taşma ve odak görünürlüğü kontrol edildi. |
+| Claude Code Setup | claude-automation-recommender kurulu. | Projeye uygun otomasyon olarak test, derleme ve Pages yayını seçildi. |
+| Task Observer | Resmi beceri, referanslar ve betikler projede. | Sürekli gözlem/otomatik tetikleme doğrulanmadı. |
 
-Resmi becerilerin içerikleri korunmuştur; buradaki kurulum, ChatGPT Work'ün mevcut oturum altyapısına otomatik bağlantı kurulduğu anlamına gelmez. Proje becerileri sonraki çalışma oturumlarında yüklenebilir. Kullanıcının onay kuralı ve ortam izinleri, bu dosyalardaki genel iş akışı önerilerinden önceliklidir.
+claude-mem host kurulumu 37777/37778 üzerinde mevcut observer bekliyor; Work ortamında bu bağlantı yok. Ücretli servis/Pro deneme hesabı açılmadı. Telemetri kapatıldı. Manuel hafıza testinde SQLite kullanıldı, Chroma ve transkript izleme kapatıldı. Ortam yenilenirse paketler yeniden kurulmalıdır; Git'teki beceriler ve tarif kalır.
 
-## Ücretsiz çalışma değerlendirmesi
+## Tekrarlanabilir kurulum
 
-GitHub Pages, bu herkese açık depoyu GitHub Free ile ücretsiz barındırabilir. Pages statik dosyaları yayınlar; Node/Python sunucusu çalıştırmaz.
+Uygulamadan ayrı geliştirici araçları:
 
-Kaynak kod ise harici hizmetlere de bağlı:
+```sh
+npm install --prefix .dev-tools skills@1.5.26 @playwright/cli@0.1.20 claude-mem@13.25.1 @openai/codex@0.154.0 omniroute@3.8.50
+npx --prefix .dev-tools skills add vercel-labs/skills --skill find-skills --agent codex --yes --copy
+python -m venv .dev-tools/headroom
+```
 
-- Metin/OCR: `gemini-2.5-flash-preview-09-2025` ve eski 1.5 modelleri tanımlı. Resmi model listesine uygun, kullanılabilir model seçimi gerekiyor. `gemini-2.5-flash` için ücretsiz API katmanı var; kota ve hesabın faturalandırma durumu belirleyici.
-- Ses: `gemini-2.5-flash-preview-tts` için ücretsiz API katmanı var; sınırsız değil.
-- AI görsel: `gemini-2.5-flash-image` ve `gemini-3.1-flash-image` çağrılıyor. Ücretsiz görsel API katmanı bulunmuyor. Sitesini ücretsiz yayınlamak bu çağrıları ücretsiz yapmaz.
-- Kaynakta görsel yükleme ve tarayıcıda yerel görsel çizimi mevcut. Bunlar ücretli görsel API çağrısı olmadan kullanılabilir, ancak AI ile yeni sahne üretimiyle aynı işlev değildir.
-- LinkedIn işlemleri yerel Python sunucusuna, bazı gazete/Buffer işlemleri Chrome eklentisine veya dış CORS aracısına bağlı. Bunların yalnız Pages'e yüklenerek çalışacağı doğrulanmış değildir.
-- API anahtarları ve yerel proxy erişim bilgileri, yayımlanan kaynak veya istemci paketine gömülmemeli.
+Oluşturulan Python ortamında `pip install "headroom-ai[proxy]==0.37.0"` kullanılır. claude-mem için [resmi kurulum](https://docs.claude-mem.ai/installation) ve yerel IDE'nin bağlantı adımları izlenir; otomatik kayıt ayrıca doğrulanır.
 
-## Karar bekleyen değişiklik
+## Kaynak ve değişiklik sınırı
 
-Öneri: ücretli AI görsel çağrılarını kaldırmak; videoda yüklenen gazete/görselleri kullanmak; metin ve sesi ücretsiz katmanlı, faturalandırma açılmamış Gemini projesinin kotası içinde çalıştırmak. Kota bittiğinde ücretli sağlayıcıya geçilmemeli ve açık hata verilmelidir.
+- Orijinal Chatgpt_1.44.tsx: 9.002 satır, 3.400.186 bayt.
+- SHA-256: `038be5948280ed1ccc95e5d9e0be16631a1228cea0b67d0809b332c0aa827960`.
+- Gövde src/App.tsx içinde korundu. Gömülü PNG aynı baytlarla public/assets/fixed-clickbait.png dosyasına ayrıldı.
+- Kullanılmayan sabit proxy tokenı kaldırıldı. Gemini anahtarı sekme oturumunda ve HTTP başlığında taşınır; URL'ye gönderilmez.
+- Gemini 2.5 Search/JSON kısıtı nedeniyle Search korundu, JSON şeması görev talimatına taşındı. Yanıt JSON olarak ayrıştırılır; geçersiz yanıt başarı sayılmaz.
+- Kaynakta Buffer token alanı yalnız depolama yapıyor, köprüye aktarılmıyordu. Alan yerine Pages/köprü açıklaması eklendi.
+- Yüklenen görseller tüm ilgili sahnelere atanır. Ücretli görsel uç noktası/model geçişi yoktur.
 
-Bu öneri mevcut otomatik AI sahne çizimini değiştirir. Kullanıcının açık onay kuralı nedeniyle bu davranış değişikliği henüz uygulanmadı. Sınırsız veya hesap koşullarından bağımsız ücretsiz kullanım vaat edilmiyor.
+## Test kanıtı
 
-## Henüz tamamlanmayanlar
-
-- React/Tailwind derleme düzeni ve `/chatgpt/` Pages yolu.
-- Yayın paketi, GitHub Actions yapılandırması ve çalışma testleri.
-- Gerçek API anahtarıyla metin/ses uçtan uca testi.
-- GitHub Pages yayını ve canlı URL doğrulaması.
-
-GitHub bağlantısında dosya/dal işlemleri kullanılabilir. Mevcut bağlantı Pages ayar uç noktasını desteklemiyor; Pages etkinleştirme adımı ayrıca doğrulanmalı. Terminalde GitHub yazma kimlik bilgisi yok; depo değişiklikleri bağlı GitHub aracıyla aktarılıyor.
+- Derleme başarılı; JavaScript yaklaşık 433 KB, gzip yaklaşık 137 KB. Medya motoru gerektiğinde ayrı yüklenir.
+- 5 API koruma testi ve 3 Firefox tarayıcı testi geçti.
+- Gerçek çıktı ffprobe ile okundu: H.264 180×320, 30/1 FPS; video 1,500 saniye, AAC ses 1,528 saniye.
+- Bu kısa teknik örnektir; tam haber videosu veya canlı Gemini TTS testi değildir. Kota testi taklit cevapla yapıldı; gerçek hesaptan kota/ücret tüketilmedi.
+- Mobil ekran görüntüsünde taşan müzik düğmesi düzeltildi; ekran sınırında kaldığı test edilir.
+- Başlangıçtaki tarayıcı testinde seçici doğru sekmeye taşındı. Test ortamının ses cihazı bağımlılığı ayrılarak MP4 dönüşümünde gerçek WebM örneği kullanıldı.
+- Pages yönetim API'si bağlı GitHub aracında yoktur. İlk yayın için Settings → Pages → GitHub Actions seçimi gerekir. Canlı yayın ayrıca doğrulanır.
 
 ## Resmi kaynaklar
 
-- [GitHub Pages kapsamı ve ücretsiz depolar](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages)
-- [Gemini API fiyatlandırması](https://ai.google.dev/gemini-api/docs/pricing)
-- [Gemini model kullanımdan kaldırma takvimi](https://ai.google.dev/gemini-api/docs/deprecations)
-- [Playwright CLI](https://github.com/microsoft/playwright-cli)
-- [OmniRoute](https://github.com/diegosouzapw/OmniRoute)
-- [Headroom](https://github.com/headroomlabs-ai/headroom)
-- [claude-mem kurulum](https://docs.claude-mem.ai/installation)
-- [Anthropic resmi eklentileri](https://github.com/anthropics/claude-plugins-official)
-- [Task Observer](https://github.com/rebelytics/one-skill-to-rule-them-all)
+[Vercel skills](https://github.com/vercel-labs/skills), [Playwright](https://github.com/microsoft/playwright), [Playwright CLI](https://github.com/microsoft/playwright-cli), [claude-mem](https://docs.claude-mem.ai/installation), [OmniRoute](https://github.com/diegosouzapw/OmniRoute), [Headroom](https://github.com/headroomlabs-ai/headroom), [Anthropic eklentileri](https://github.com/anthropics/claude-plugins-official), [Task Observer](https://github.com/rebelytics/one-skill-to-rule-them-all).
+
+[Gemini fiyatlandırması](https://ai.google.dev/gemini-api/docs/pricing), [model ömrü](https://ai.google.dev/gemini-api/docs/deprecations), [JSON/araç uyumu](https://ai.google.dev/gemini-api/docs/structured-output), [Pages etkinleştirme yetkisi](https://github.com/actions/configure-pages/blob/main/action.yml).

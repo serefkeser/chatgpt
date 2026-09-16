@@ -8,3 +8,8 @@ node_modules/
 .agents/skills/task-observer/*.png
 .agents/skills/task-observer/.github/
 .agents/skills/task-observer/.tessl-plugin/
+dist/
+public/vendor/
+test-results/
+playwright-report/
+.dev-tools/
